@@ -27,8 +27,8 @@ export const Header = () => {
     })();
   }, []);
   return (
-    <header className="flex py-2 px-4 justify-between items-center">
-      <NavigationBar />
+    <header className="container flex py-2 px-4 justify-between items-center border-b">
+      <NavigationBar session={session} />
       <div className="flex items-center">
         {session ? (
           <Badge variant="outline">

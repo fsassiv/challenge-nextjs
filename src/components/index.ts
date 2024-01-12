@@ -1,3 +1,9 @@
+export { Cart } from "./cart";
+export { Footer } from "./footer";
 export { Header } from "./header";
+export { Hero } from "./hero";
 export { LoginForm } from "./loginForm";
 export { NavigationBar } from "./navigationBar";
+export { ProductDetails } from "./productDetails";
+export { ProductsContainer } from "./productsContainer";
+export { RegisterProductForm } from "./registerProductForm";

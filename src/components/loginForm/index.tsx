@@ -14,7 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { LoginFormPropTypes } from "./types";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+interface LoginFormPropTypes {
+  onSubmit: SubmitHandler<FieldValues>;
+}
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -36,7 +39,7 @@ export const LoginForm = ({ onSubmit }: LoginFormPropTypes) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 p-10 rounded border border-gray-400"
       >
-        <h4 className="font-bold text-xl">Login Form</h4>
+        <h4 className="font-bold text-xl">Login</h4>
         <FormField
           control={form.control}
           name="username"
@@ -67,7 +70,9 @@ export const LoginForm = ({ onSubmit }: LoginFormPropTypes) => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-full">
+          Entrar
+        </Button>
       </form>
     </Form>
   );

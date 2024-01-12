@@ -1,13 +1,12 @@
 "use client";
 import { LoginForm } from "@/components";
+import { useToast } from "@/components/ui/use-toast";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { useRef } from "react";
 import { FieldValues } from "react-hook-form";
 
 export default function Login() {
-  const userName = useRef("");
-  const password = useRef("");
+  const { toast } = useToast();
 
   const callbackUrl =
     useSearchParams()
@@ -25,12 +24,17 @@ export default function Login() {
         callbackUrl,
       });
     } catch (error) {
-      console.error(error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description:
+          "Algo deu errado. Verifique as informações e tente novamente!",
+      });
     }
   };
 
   return (
-    <main className="flex min-h-screen min-w-full flex-col items-center justify-center p-24">
+    <main className="flex h-screen min-w-full flex-col items-center justify-center p-24">
       <LoginForm onSubmit={handleSubmit} />
     </main>
   );
