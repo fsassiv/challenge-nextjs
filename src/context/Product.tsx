@@ -8,7 +8,7 @@ interface ProductsProviderPropTypes {
 export interface ProductTypes {
   id: string;
   name: string;
-  price: null;
+  price: number;
   description: string;
 }
 
