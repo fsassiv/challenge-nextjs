@@ -28,7 +28,7 @@ export const NavigationBar = ({ session }: NavigationBarPropTypes) => {
         <NavigationMenuItem>
           <Link href="/products" legacyBehavior passHref>
             <NavigationMenuLink className="flex items-center text-gray-700">
-              <MdFormatListBulleted size={20} /> Produtos
+              <MdFormatListBulleted size={20} /> Lista de Produtos
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

@@ -1,24 +1,53 @@
+"use client";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { ProductTypes, useProductsContext } from "@/context/Product";
 import { MdShoppingCart } from "react-icons/md";
 import { Button } from "../ui/button";
-import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
+import { CartItem } from "./CartItem";
 import "./styles.css";
 
 export const Cart = () => {
+  const { cart, cartAmount, removeFromCart } = useProductsContext();
+
+  const uniqueList = (
+    list: ProductTypes[],
+    key: (target: ProductTypes) => ProductTypes
+  ): ProductTypes[] => {
+    return [...new Map(list.map((item) => [key(item), item])).values()];
+  };
+
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
+    <Sheet>
+      <SheetTrigger asChild>
         <Button variant="ghost">
           <MdShoppingCart size={20} /> Carrinho
         </Button>
-      </DrawerTrigger>
-      <DrawerContent className="drawer-content min-h-screen  h-screen max-h-screen max-w-xs rounded-none p-4">
-        <h4 className="font-bold text-lg">Seu Carrinho</h4>
-        <hr />
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa
-        dignissimos molestiae excepturi! Soluta sit voluptatum rerum, nesciunt
-        id nobis tempora! Voluptate omnis doloremque architecto dolorum tempore
-        consequatur accusamus vero voluptatum!
-      </DrawerContent>
-    </Drawer>
+      </SheetTrigger>
+      <SheetContent side="left" className="flex flex-col justify-between">
+        <SheetHeader>
+          <SheetTitle>Seu carinho</SheetTitle>
+        </SheetHeader>
+        <ul className="h-full">
+          {uniqueList(cart, (it: any) => it.name).map((item) => (
+            <CartItem
+              key={item.id}
+              {...item}
+              qnt={cart.filter((cItem) => cItem.id === item.id).length}
+              handleRemoveFromCart={() => removeFromCart(item.id)}
+            />
+          ))}
+        </ul>
+        <SheetFooter>
+          <h3 className="text-2xl">Seu total R$: {cartAmount.toFixed(2)}</h3>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 };

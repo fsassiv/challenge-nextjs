@@ -1,7 +1,6 @@
 "use client";
 
 import { useProductsContext } from "@/context/Product";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { Product } from "./Product";
@@ -23,9 +22,7 @@ export const Products = () => {
     <ul className="grid grid-cols-3 mt-10 gap-4">
       {filteredList().map((item) => (
         <li key={item.id}>
-          <Link href={`/products/${item.id}`}>
-            <Product {...item} />
-          </Link>
+          <Product {...item} />
         </li>
       ))}
     </ul>

@@ -15,10 +15,6 @@ export const ProductDetails = () => {
     setProduct(products.find((item) => item?.id === params?.productId));
   }, [params, products]);
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
-
   return (
     <div className="mx-20">
       <p className="flex items-end">
