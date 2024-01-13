@@ -9,8 +9,9 @@ export default function Login() {
   const { toast } = useToast();
 
   const callbackUrl =
-    useSearchParams().get("callbackUrl")?.replace(window.location.origin, "") ||
-    "/";
+    useSearchParams()
+      .get("callbackUrl")
+      ?.replace(window?.location?.origin, "") || "/";
 
   const handleSubmit = async (data: FieldValues) => {
     try {
