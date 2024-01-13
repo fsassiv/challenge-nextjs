@@ -1,6 +1,5 @@
 import { Footer, Header } from "@/components";
 import { Toaster } from "@/components/ui/toaster";
-import { ProductsProvider } from "@/context/Product";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -24,14 +23,14 @@ export default async function RootLayout({
       <body
         className={clsx(inter.className, "flex flex-col h-screen max-h-screen")}
       >
-        <ProductsProvider>
+        <Providers>
           <>
             <Header />
-            <Providers>{children}</Providers>
+            {children}
             <Footer />
             <Toaster />
           </>
-        </ProductsProvider>
+        </Providers>
       </body>
     </html>
   );

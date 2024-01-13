@@ -7,14 +7,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ProductTypes, useProductsContext } from "@/context/Product";
+import { useCartContext } from "@/context/Cart";
+import { ProductTypes } from "@/context/Product";
 import { MdShoppingCart } from "react-icons/md";
 import { Button } from "../ui/button";
 import { CartItem } from "./CartItem";
 import "./styles.css";
 
 export const Cart = () => {
-  const { cart, cartAmount, removeFromCart } = useProductsContext();
+  const { cart, cartAmount, removeFromCart } = useCartContext();
 
   const uniqueList = (
     list: ProductTypes[],

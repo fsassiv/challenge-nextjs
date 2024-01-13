@@ -4,7 +4,7 @@ import {
   CardFooter,
   CardTitle,
 } from "@/components/ui/card";
-import { useProductsContext } from "@/context/Product";
+import { useCartContext } from "@/context/Cart";
 import { useRouter } from "next/navigation";
 import { MdAddShoppingCart, MdOutlineRemoveRedEye } from "react-icons/md";
 import { Button } from "../ui/button";
@@ -17,7 +17,7 @@ type ProductPropTypes = {
 };
 
 export const Product = ({ name, description, price, id }: ProductPropTypes) => {
-  const { addToCart } = useProductsContext();
+  const { addToCart } = useCartContext();
   const { push } = useRouter();
 
   return (

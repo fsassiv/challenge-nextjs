@@ -25,8 +25,8 @@ export const ProductsContainer = () => {
         onKeyDown={onKeyDown}
         onChange={({ target }) => (search.current = target.value)}
       />
-      <Link href="/products/registration" className="inline-block my-2">
-        <Button variant="outline">Cadastrar produto</Button>
+      <Link href="/products/registration" className="inline-block my-3">
+        <Button type="button">Cadastrar produto</Button>
       </Link>
       <Products />
     </div>
