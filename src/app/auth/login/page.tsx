@@ -9,9 +9,8 @@ export default function Login() {
   const { toast } = useToast();
 
   const callbackUrl =
-    useSearchParams()
-      .get("callbackUrl")
-      ?.replace("http://localhost:3000", "") || "/";
+    useSearchParams().get("callbackUrl")?.replace(window.location.origin, "") ||
+    "/";
 
   const handleSubmit = async (data: FieldValues) => {
     try {
