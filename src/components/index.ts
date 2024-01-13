@@ -1,4 +1,5 @@
 export { Cart } from "./cart";
+export { AppCurrencyInput } from "./currencyInput";
 export { Footer } from "./footer";
 export { Header } from "./header";
 export { Hero } from "./hero";

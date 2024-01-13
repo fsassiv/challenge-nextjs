@@ -15,7 +15,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useProductsContext } from "@/context/Product";
+import { CurrencyInputOnChangeValues } from "react-currency-input-field";
 import { v4 as uuidv4 } from "uuid";
+import { AppCurrencyInput } from "..";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -24,7 +26,7 @@ const formSchema = z.object({
   description: z.string().min(6, {
     message: "Descrição deve ter pelo menos 6 caracteres",
   }),
-  price: z.string(),
+  price: z.number().min(1, { message: "Preço deve ser maior que zero" }),
 });
 
 export const RegisterProductForm = () => {
@@ -47,7 +49,14 @@ export const RegisterProductForm = () => {
   const clearFields = () => {
     form.setValue("name", "");
     form.setValue("description", "");
-    form.setValue("price", 0);
+  };
+
+  const handleValueChange = (
+    _value: string | undefined,
+    _name: string | undefined,
+    values: CurrencyInputOnChangeValues | undefined
+  ) => {
+    form.setValue("price", values?.float);
   };
 
   return (
@@ -91,10 +100,9 @@ export const RegisterProductForm = () => {
               <FormItem>
                 <FormLabel>Preço</FormLabel>
                 <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="Preço do produto"
-                    {...field}
+                  <AppCurrencyInput
+                    name="price"
+                    onValueChange={handleValueChange}
                   />
                 </FormControl>
                 <FormMessage />

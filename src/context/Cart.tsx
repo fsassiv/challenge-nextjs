@@ -17,6 +17,7 @@ interface CartContextTypes {
   cart: ProductTypes[];
   addToCart: (data: ProductTypes) => void;
   removeFromCart: (data: string) => void;
+  removeUnitFromCart: (data: string) => void;
   cartAmount: number;
 }
 
@@ -24,6 +25,7 @@ const CartContext = createContext<CartContextTypes>({
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
+  removeUnitFromCart: () => {},
   cartAmount: 0,
 });
 
@@ -46,6 +48,13 @@ export const CartProvider = ({ children }: CartProviderPropTypes) => {
     setCart(temp);
   };
 
+  const removeUnitFromCart = (id: string) => {
+    const index = cart.map((e) => e.id).indexOf(id);
+    const tempCart = [...cart];
+    tempCart.splice(index, 1);
+    setCart(tempCart);
+  };
+
   useEffect(() => {
     const sum = cart.reduce((acc, item) => acc + item.price, 0);
     setCartAmount(sum);
@@ -57,6 +66,7 @@ export const CartProvider = ({ children }: CartProviderPropTypes) => {
         cart,
         addToCart,
         removeFromCart,
+        removeUnitFromCart,
         cartAmount,
       }}
     >

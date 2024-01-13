@@ -1,6 +1,7 @@
 "use client";
 
 import { ProductTypes, useProductsContext } from "@/context/Product";
+import { formatCurrency } from "@/utils";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -34,7 +35,9 @@ export const ProductDetails = () => {
           </p>
           <p className="flex items-end">
             preço:&nbsp;
-            <h3 className="text-xl italic font-bold">R$: {product?.price}</h3>
+            <h3 className="text-xl italic font-bold">
+              {formatCurrency(product?.price)}
+            </h3>
           </p>
         </>
       ) : (

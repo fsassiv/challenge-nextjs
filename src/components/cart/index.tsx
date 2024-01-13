@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/sheet";
 import { useCartContext } from "@/context/Cart";
 import { ProductTypes } from "@/context/Product";
+import { formatCurrency } from "@/utils";
 import { MdShoppingCart } from "react-icons/md";
 import { Button } from "../ui/button";
 import { CartItem } from "./CartItem";
 import "./styles.css";
 
 export const Cart = () => {
-  const { cart, cartAmount, removeFromCart } = useCartContext();
+  const { cart, cartAmount, removeFromCart, addToCart, removeUnitFromCart } =
+    useCartContext();
 
   const uniqueList = (
     list: ProductTypes[],
@@ -42,11 +44,15 @@ export const Cart = () => {
               {...item}
               qnt={cart.filter((cItem) => cItem.id === item.id).length}
               handleRemoveFromCart={() => removeFromCart(item.id)}
+              addToCart={() => addToCart(item)}
+              removeUnitFromCart={() => removeUnitFromCart(item.id)}
             />
           ))}
         </ul>
         <SheetFooter>
-          <h3 className="text-2xl">Seu total R$: {cartAmount.toFixed(2)}</h3>
+          <h3 className="text-2xl">
+            Seu total R$: {formatCurrency(cartAmount)}
+          </h3>
         </SheetFooter>
       </SheetContent>
     </Sheet>
