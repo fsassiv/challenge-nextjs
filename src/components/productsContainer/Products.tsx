@@ -19,7 +19,7 @@ export const Products = () => {
   }, [products, searchParams]);
 
   return (
-    <ul className="grid grid-cols-3 mt-10 gap-4">
+    <ul className="grid grid-cols-3 mt-4 gap-4">
       {filteredList().map((item) => (
         <li key={item.id}>
           <Product {...item} />

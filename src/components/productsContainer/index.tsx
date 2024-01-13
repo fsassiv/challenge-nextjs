@@ -1,7 +1,9 @@
 "use client";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { KeyboardEvent, useRef } from "react";
+import { Button } from "../ui/button";
 import { Products } from "./Products";
 
 export const ProductsContainer = () => {
@@ -19,10 +21,13 @@ export const ProductsContainer = () => {
     <div className="mx-20">
       <Input
         type="text"
-        placeholder="Qual produto esta procurando?"
+        placeholder="Qual produto esta procurando? [Digite ENTER para filtrar]"
         onKeyDown={onKeyDown}
         onChange={({ target }) => (search.current = target.value)}
       />
+      <Link href="/products/registration" className="inline-block my-2">
+        <Button variant="outline">Cadastrar produto</Button>
+      </Link>
       <Products />
     </div>
   );

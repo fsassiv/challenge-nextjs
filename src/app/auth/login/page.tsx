@@ -11,7 +11,10 @@ export default function Login() {
   const callbackUrl =
     useSearchParams()
       .get("callbackUrl")
-      ?.replace(window?.location?.origin, "") || "/";
+      ?.replace(
+        typeof window !== "undefined" ? window?.location?.origin : "",
+        ""
+      ) || "/";
 
   const handleSubmit = async (data: FieldValues) => {
     try {
