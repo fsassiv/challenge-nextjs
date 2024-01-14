@@ -38,7 +38,10 @@ export default function Login() {
 
   return (
     <main className="flex h-screen min-w-full flex-col items-center justify-center p-24">
-      <LoginForm onSubmit={handleSubmit} />
+      <LoginForm
+        onSubmit={handleSubmit}
+        signInWithGitHub={() => signIn("github", { callbackUrl })}
+      />
     </main>
   );
 }

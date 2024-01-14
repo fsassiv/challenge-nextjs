@@ -15,8 +15,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { FaGithub } from "react-icons/fa6";
 interface LoginFormPropTypes {
   onSubmit: SubmitHandler<FieldValues>;
+  signInWithGitHub: () => void;
 }
 
 const formSchema = z.object({
@@ -28,7 +30,10 @@ const formSchema = z.object({
   }),
 });
 
-export const LoginForm = ({ onSubmit }: LoginFormPropTypes) => {
+export const LoginForm = ({
+  onSubmit,
+  signInWithGitHub,
+}: LoginFormPropTypes) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
   });
@@ -72,6 +77,15 @@ export const LoginForm = ({ onSubmit }: LoginFormPropTypes) => {
         />
         <Button type="submit" className="w-full">
           Entrar
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full"
+          onClick={signInWithGitHub}
+        >
+          <FaGithub />
+          GitHub
         </Button>
       </form>
     </Form>
