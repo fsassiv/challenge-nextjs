@@ -85,7 +85,7 @@ export const LoginForm = ({
           onClick={signInWithGitHub}
         >
           <FaGithub />
-          GitHub
+          &nbsp;GitHub
         </Button>
       </form>
     </Form>
