@@ -25,12 +25,22 @@ export const CartItem: FC<CartItemPropTypes> = ({
       <h6 className="text-base font-bold">{`${name} - x${qnt}`}</h6>
       <p className="text-sm">Preço Und: R$ {formatCurrency(price)}</p>
       <p className="text-sm">Subtotal: R$ {formatCurrency(price * qnt)}</p>
-      <div>
-        <Button variant="ghost" onClick={addToCart}>
-          <MdAdd />
-        </Button>
-        <Button variant="ghost" onClick={removeUnitFromCart}>
+      <div className="flex justify-end w-full">
+        <Button
+          variant="outline"
+          title="Remover unidade"
+          onClick={removeUnitFromCart}
+          className="mr-2 py-2 px-3"
+        >
           <MdOutlineRemove />
+        </Button>
+        <Button
+          variant="outline"
+          title="Adicionar unidade"
+          className="py-2 px-3"
+          onClick={addToCart}
+        >
+          <MdAdd />
         </Button>
       </div>
       <Button
